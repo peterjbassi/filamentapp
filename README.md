@@ -1,4 +1,4 @@
-Simple project using Docker Compose to demonstrate load balancing cache issue in Livewire.
+Simple project using Docker Compose to demonstrate suspected load balancing cache issue in Livewire.
 
 Logging in brings up a Filament dashboard configured to show 10 chart widgets in a 2-column/5-row layout. One or more of the chart requests to `/livewire/update` will fail.
 
