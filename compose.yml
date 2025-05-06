@@ -1,0 +1,42 @@
+name: charts
+
+services:
+  charts:
+    build:
+      context: .
+    image: charts
+    env_file:
+      - ./.env
+    deploy:
+      mode: replicated
+      replicas: 5
+
+  nginx:
+    image: nginx:1-alpine
+    restart: always
+    depends_on:
+      - charts
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf.lb:/etc/nginx/nginx.conf:ro
+
+  database:
+    image: mysql:8-debian
+    restart: always
+    depends_on:
+      - charts
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./.env
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+
+  redis:
+    image: redis:8-alpine
+    restart: always
+    depends_on:
+      - charts
+    ports:
+      - "6379:6379"

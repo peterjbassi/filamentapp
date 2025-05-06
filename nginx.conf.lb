@@ -1,0 +1,17 @@
+events { }
+
+http {
+    upstream charts {
+        server charts:8080;
+    }
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://charts;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+}
