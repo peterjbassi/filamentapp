@@ -13,6 +13,9 @@ This project is configured to serve all endpoints over HTTPS. Use an SSL termina
 git clone https://github.com/peterjbassi/filamentapp.git
 ```
 ```
+sudo chmod -R 777 bootstrap storage
+```
+```
 docker compose up -d
 ```
 ```
